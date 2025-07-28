@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Record - {{ patient.get_full_name }} - Doctor Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1400px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .page-container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #28a745;
+        }
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #28a745;
+            padding: 8px 16px;
+            border: 1px solid #28a745;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        .nav-links a:hover {
+            background: #28a745;
+            color: white;
+        }
+        
+        .patient-overview {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        .patient-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+            font-weight: bold;
+            margin: 0 auto;
+        }
+        .patient-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .patient-name {
+            font-size: 2em;
+            font-weight: bold;
+            color: #333;
+            margin: 0;
+        }
+        .patient-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .detail-item {
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 3px solid #007bff;
+        }
+        .detail-label {
+            font-weight: bold;
+            color: #666;
+            font-size: 0.9em;
+        }
+        .detail-value {
+            color: #333;
+            margin-top: 5px;
+        }
+        
+        .records-section {
+            margin-top: 40px;
+        }
+        .section-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .records-tabs {
+            display: flex;
+            border-bottom: 2px solid #e9ecef;
+            margin-bottom: 20px;
+        }
+        .tab-btn {
+            padding: 12px 24px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 1em;
+            color: #666;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        .tab-btn.active {
+            color: #28a745;
+            border-bottom-color: #28a745;
+            font-weight: bold;
+        }
+        .tab-btn:hover {
+            color: #28a745;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        
+        .appointments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .appointment-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            border-left: 4px solid #007bff;
+            transition: all 0.3s;
+        }
+        .appointment-card:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .appointment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .appointment-date {
+            font-weight: bold;
+            color: #333;
+            font-size: 1.1em;
+        }
+        .appointment-status {
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .status-completed { background: #d4edda; color: #155724; }
+        .status-pending { background: #fff3cd; color: #856404; }
+        .status-cancelled { background: #f8d7da; color: #721c24; }
+        .status-confirmed { background: #d1ecf1; color: #0c5460; }
+        
+        .appointment-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .appointment-field {
+            display: flex;
+            flex-direction: column;
+        }
+        .field-label {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        .field-value {
+            color: #333;
+            font-weight: bold;
+        }
+        
+        .medical-history-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .history-card {
+            background: #fff;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            border-left: 4px solid #28a745;
+        }
+        .history-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .visit-date {
+            font-weight: bold;
+            color: #28a745;
+            font-size: 1.1em;
+        }
+        .history-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .history-field {
+            margin-bottom: 15px;
+        }
+        .history-field h4 {
+            margin: 0 0 8px 0;
+            color: #333;
+            font-size: 0.95em;
+        }
+        .history-field p {
+            margin: 0;
+            color: #666;
+            line-height: 1.4;
+        }
+        
+        .no-records {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+        .no-records h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .action-buttons {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        .btn-primary { background: #007bff; color: white; }
+        .btn-primary:hover { background: #0056b3; }
+        .btn-success { background: #28a745; color: white; }
+        .btn-success:hover { background: #218838; }
+        .btn-info { background: #17a2b8; color: white; }
+        .btn-info:hover { background: #138496; }
+        
+        @media (max-width: 768px) {
+            .patient-overview {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .patient-details {
+                grid-template-columns: 1fr;
+            }
+            .records-tabs {
+                flex-direction: column;
+            }
+            .nav-links {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <div class="header">
+            <h1>📋 Patient Medical Record</h1>
+            <div class="nav-links">
+                <a href="{% url 'appointments:patient_records' %}">Back to Patients</a>
+                <a href="{% url 'appointments:doctor_appointments' %}">Appointments</a>
+                <a href="{% url 'doctor_dashboard' %}">Dashboard</a>
+            </div>
+        </div>
+        
+        <!-- Patient Overview -->
+        <div class="patient-overview">
+            <div>
+                <div class="patient-avatar">
+                    {{ patient.first_name.0|upper }}{{ patient.last_name.0|upper }}
+                </div>
+            </div>
+            <div class="patient-info">
+                <h2 class="patient-name">{{ patient.get_full_name }}</h2>
+                <div class="patient-details">
+                    <div class="detail-item">
+                        <div class="detail-label">Email Address</div>
+                        <div class="detail-value">{{ patient.email }}</div>
+                    </div>
+                    {% if patient.phone_number %}
+                    <div class="detail-item">
+                        <div class="detail-label">Phone Number</div>
+                        <div class="detail-value">{{ patient.phone_number }}</div>
+                    </div>
+                    {% endif %}
+                    {% if patient.date_of_birth %}
+                    <div class="detail-item">
+                        <div class="detail-label">Date of Birth</div>
+                        <div class="detail-value">{{ patient.date_of_birth|date:"F j, Y" }}</div>
+                    </div>
+                    {% endif %}
+                    {% if patient.gender %}
+                    <div class="detail-item">
+                        <div class="detail-label">Gender</div>
+                        <div class="detail-value">{{ patient.get_gender_display }}</div>
+                    </div>
+                    {% endif %}
+                    <div class="detail-item">
+                        <div class="detail-label">Patient Since</div>
+                        <div class="detail-value">{{ patient.date_joined|date:"F Y" }}</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Total Visits</div>
+                        <div class="detail-value">{{ appointments.count }} appointment{{ appointments.count|pluralize }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Records Section -->
+        <div class="records-section">
+            <div class="records-tabs">
+                <button class="tab-btn active" onclick="showTab('appointments')">📅 Appointment History</button>
+                <button class="tab-btn" onclick="showTab('medical-history')">🏥 Medical Records</button>
+            </div>
+            
+            <!-- Appointments Tab -->
+            <div id="appointments-tab" class="tab-content active">
+                {% if appointments %}
+                    <div class="appointments-list">
+                        {% for appointment in appointments %}
+                            <div class="appointment-card">
+                                <div class="appointment-header">
+                                    <div class="appointment-date">{{ appointment.appointment_date|date:"F j, Y g:i A" }}</div>
+                                    <div class="appointment-status status-{{ appointment.status }}">{{ appointment.get_status_display }}</div>
+                                </div>
+                                <div class="appointment-details">
+                                    <div class="appointment-field">
+                                        <div class="field-label">Appointment Type</div>
+                                        <div class="field-value">{{ appointment.get_appointment_type_display }}</div>
+                                    </div>
+                                    {% if appointment.chief_complaint %}
+                                    <div class="appointment-field">
+                                        <div class="field-label">Chief Complaint</div>
+                                        <div class="field-value">{{ appointment.chief_complaint }}</div>
+                                    </div>
+                                    {% endif %}
+                                    {% if appointment.notes %}
+                                    <div class="appointment-field">
+                                        <div class="field-label">Doctor Notes</div>
+                                        <div class="field-value">{{ appointment.notes }}</div>
+                                    </div>
+                                    {% endif %}
+                                    {% if appointment.created_at %}
+                                    <div class="appointment-field">
+                                        <div class="field-label">Booked On</div>
+                                        <div class="field-value">{{ appointment.created_at|date:"M j, Y" }}</div>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="no-records">
+                        <h3>📅 No Appointment History</h3>
+                        <p>No appointments found with this patient.</p>
+                    </div>
+                {% endif %}
+            </div>
+            
+            <!-- Medical History Tab -->
+            <div id="medical-history-tab" class="tab-content">
+                {% if medical_history %}
+                    <div class="medical-history-list">
+                        {% for record in medical_history %}
+                            <div class="history-card">
+                                <div class="history-header">
+                                    <div class="visit-date">{{ record.visit_date|date:"F j, Y" }}</div>
+                                </div>
+                                <div class="history-details">
+                                    {% if record.chief_complaint %}
+                                    <div class="history-field">
+                                        <h4>Chief Complaint</h4>
+                                        <p>{{ record.chief_complaint }}</p>
+                                    </div>
+                                    {% endif %}
+                                    {% if record.diagnosis %}
+                                    <div class="history-field">
+                                        <h4>Diagnosis</h4>
+                                        <p>{{ record.diagnosis }}</p>
+                                    </div>
+                                    {% endif %}
+                                    {% if record.treatment_plan %}
+                                    <div class="history-field">
+                                        <h4>Treatment Plan</h4>
+                                        <p>{{ record.treatment_plan }}</p>
+                                    </div>
+                                    {% endif %}
+                                    {% if record.prescription %}
+                                    <div class="history-field">
+                                        <h4>Prescription</h4>
+                                        <p>{{ record.prescription }}</p>
+                                    </div>
+                                    {% endif %}
+                                    {% if record.vital_signs %}
+                                    <div class="history-field">
+                                        <h4>Vital Signs</h4>
+                                        <p>{{ record.vital_signs }}</p>
+                                    </div>
+                                    {% endif %}
+                                    {% if record.notes %}
+                                    <div class="history-field">
+                                        <h4>Additional Notes</h4>
+                                        <p>{{ record.notes }}</p>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="no-records">
+                        <h3>🏥 No Medical Records</h3>
+                        <p>No detailed medical records found for this patient.</p>
+                        <p>Medical records are created during appointments and contain detailed diagnosis and treatment information.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <a href="{% url 'coming_soon' %}?feature=add-medical-record" class="btn btn-success">📝 Add Medical Record</a>
+            <a href="{% url 'coming_soon' %}?feature=schedule-appointment" class="btn btn-primary">📅 Schedule Appointment</a>
+            <a href="{% url 'coming_soon' %}?feature=export-records" class="btn btn-info">📄 Export Records</a>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+            
+            // Remove active class from all tab buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(button => button.classList.remove('active'));
+            
+            // Show selected tab content
+            document.getElementById(tabName + '-tab').classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

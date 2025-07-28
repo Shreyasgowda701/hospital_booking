@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bills - HMS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .navbar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .header h1 {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .filters {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .search-box, .filter-select {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            color: white;
+            font-family: inherit;
+        }
+
+        .search-box::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .filter-select option {
+            background: #333;
+            color: white;
+        }
+
+        .btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .btn i {
+            margin-right: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #45a049, #4CAF50);
+        }
+
+        .bills-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .bills-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .bill-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .bill-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .bill-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .bill-number {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .bill-status {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .status-paid {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4CAF50;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+        }
+
+        .status-pending {
+            background: rgba(255, 152, 0, 0.2);
+            color: #FF9800;
+            border: 1px solid rgba(255, 152, 0, 0.3);
+        }
+
+        .status-overdue {
+            background: rgba(244, 67, 54, 0.2);
+            color: #f44336;
+            border: 1px solid rgba(244, 67, 54, 0.3);
+        }
+
+        .status-partial {
+            background: rgba(33, 150, 243, 0.2);
+            color: #2196F3;
+            border: 1px solid rgba(33, 150, 243, 0.3);
+        }
+
+        .bill-info {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-label {
+            opacity: 0.8;
+        }
+
+        .info-value {
+            font-weight: 500;
+        }
+
+        .bill-amounts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .amount-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .amount-label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.85rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .amount-value {
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .bill-actions {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: flex-end;
+        }
+
+        .btn-small {
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .pagination a,
+        .pagination span {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .pagination a:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .pagination .current {
+            background: rgba(255, 255, 255, 0.4);
+            font-weight: 600;
+        }
+
+        .no-bills {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            padding: 3rem 0;
+        }
+
+        .no-bills i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        @media (max-width: 768px) {
+            .navbar-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .filters {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .bill-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .bill-amounts {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .bill-actions {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="{% url 'home' %}" class="logo">
+                <i class="fas fa-hospital-alt"></i> HMS
+            </a>
+            <ul class="nav-links">
+                <li><a href="{% url 'billing:dashboard' %}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="{% url 'billing:bill_list' %}"><i class="fas fa-file-invoice"></i> Bills</a></li>
+                {% if user.role == 'admin' or user.role == 'doctor' %}
+                <li><a href="{% url 'billing:create_bill' %}"><i class="fas fa-plus"></i> New Bill</a></li>
+                {% endif %}
+                <li><a href="{% url 'billing:payment_history' %}"><i class="fas fa-history"></i> Payments</a></li>
+                {% if user.role == 'admin' %}
+                <li><a href="{% url 'admins:dashboard' %}"><i class="fas fa-shield-alt"></i> Admin Panel</a></li>
+                {% endif %}
+                {% if user.role == 'doctor' %}
+                <li><a href="{% url 'doctor_dashboard' %}"><i class="fas fa-user-md"></i> Doctor Panel</a></li>
+                {% endif %}
+                {% if user.role == 'patient' %}
+                <li><a href="{% url 'patient_dashboard' %}"><i class="fas fa-user"></i> Patient Panel</a></li>
+                {% endif %}
+                <li><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-file-invoice"></i> Bills Management</h1>
+            
+            <form method="GET" class="filters">
+                <input type="text" name="search" placeholder="Search bills..." class="search-box" value="{{ search_query }}">
+                
+                <select name="status" class="filter-select" onchange="this.form.submit()">
+                    <option value="">All Status</option>
+                    <option value="draft" {% if status_filter == 'draft' %}selected{% endif %}>Draft</option>
+                    <option value="pending" {% if status_filter == 'pending' %}selected{% endif %}>Pending</option>
+                    <option value="partial" {% if status_filter == 'partial' %}selected{% endif %}>Partially Paid</option>
+                    <option value="paid" {% if status_filter == 'paid' %}selected{% endif %}>Paid</option>
+                    <option value="overdue" {% if status_filter == 'overdue' %}selected{% endif %}>Overdue</option>
+                </select>
+                
+                <button type="submit" class="btn">
+                    <i class="fas fa-search"></i> Search
+                </button>
+                
+                {% if user.role == 'admin' or user.role == 'doctor' %}
+                <a href="{% url 'billing:create_bill' %}" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> New Bill
+                </a>
+                {% endif %}
+            </form>
+        </div>
+
+        <div class="bills-container">
+            {% if bills %}
+            <div class="bills-grid">
+                {% for bill in bills %}
+                <div class="bill-card">
+                    <div class="bill-header">
+                        <div class="bill-number">{{ bill.bill_number }}</div>
+                        <div class="bill-status status-{{ bill.status }}">
+                            {{ bill.get_status_display }}
+                        </div>
+                    </div>
+                    
+                    <div class="bill-info">
+                        {% if user_type != 'patient' %}
+                        <div class="info-row">
+                            <span class="info-label">Patient:</span>
+                            <span class="info-value">{{ bill.patient.get_full_name }}</span>
+                        </div>
+                        {% endif %}
+                        <div class="info-row">
+                            <span class="info-label">Issue Date:</span>
+                            <span class="info-value">{{ bill.issue_date|date:"M d, Y" }}</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Due Date:</span>
+                            <span class="info-value">{{ bill.due_date|date:"M d, Y" }}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bill-amounts">
+                        <div class="amount-box">
+                            <div class="amount-label">Total</div>
+                            <div class="amount-value">${{ bill.total_amount|floatformat:2 }}</div>
+                        </div>
+                        <div class="amount-box">
+                            <div class="amount-label">Paid</div>
+                            <div class="amount-value">${{ bill.paid_amount|floatformat:2 }}</div>
+                        </div>
+                        <div class="amount-box">
+                            <div class="amount-label">Balance</div>
+                            <div class="amount-value">${{ bill.balance_amount|floatformat:2 }}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="bill-actions">
+                        <a href="{% url 'billing:bill_detail' bill.id %}" class="btn btn-small">
+                            <i class="fas fa-eye"></i> View
+                        </a>
+                        {% if user.role == 'admin' or user.role == 'doctor' %}
+                        {% if bill.balance_amount > 0 %}
+                        <a href="{% url 'billing:bill_detail' bill.id %}#payment" class="btn btn-small btn-primary">
+                            <i class="fas fa-credit-card"></i> Record Payment
+                        </a>
+                        {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <!-- Pagination -->
+            {% if bills.has_other_pages %}
+            <div class="pagination">
+                {% if bills.has_previous %}
+                    <a href="?page=1{% if status_filter %}&status={{ status_filter }}{% endif %}{% if search_query %}&search={{ search_query }}{% endif %}">&laquo; First</a>
+                    <a href="?page={{ bills.previous_page_number }}{% if status_filter %}&status={{ status_filter }}{% endif %}{% if search_query %}&search={{ search_query }}{% endif %}">Previous</a>
+                {% endif %}
+                
+                <span class="current">
+                    Page {{ bills.number }} of {{ bills.paginator.num_pages }}
+                </span>
+                
+                {% if bills.has_next %}
+                    <a href="?page={{ bills.next_page_number }}{% if status_filter %}&status={{ status_filter }}{% endif %}{% if search_query %}&search={{ search_query }}{% endif %}">Next</a>
+                    <a href="?page={{ bills.paginator.num_pages }}{% if status_filter %}&status={{ status_filter }}{% endif %}{% if search_query %}&search={{ search_query }}{% endif %}">Last &raquo;</a>
+                {% endif %}
+            </div>
+            {% endif %}
+            
+            {% else %}
+            <div class="no-bills">
+                <i class="fas fa-file-invoice"></i>
+                <h3>No Bills Found</h3>
+                <p>{% if search_query or status_filter %}No bills match your search criteria.{% else %}No bills have been created yet.{% endif %}</p>
+                {% if user.role == 'admin' or user.role == 'doctor' %}
+                <a href="{% url 'billing:create_bill' %}" class="btn btn-primary" style="margin-top: 1rem;">
+                    <i class="fas fa-plus"></i> Create First Bill
+                </a>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

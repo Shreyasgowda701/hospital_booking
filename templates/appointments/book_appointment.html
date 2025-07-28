@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment - Hospital Booking System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(45deg, #2196F3, #21CBF3);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .nav-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .doctor-summary {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-left: 5px solid #2196F3;
+        }
+
+        .doctor-name {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .doctor-specialty {
+            color: #2196F3;
+            margin-bottom: 10px;
+        }
+
+        .doctor-info {
+            color: #6c757d;
+        }
+
+        .form-section {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 12px;
+            padding: 30px;
+        }
+
+        .section-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            color: #495057;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2196F3;
+            box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.25);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .btn-submit {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin-right: 15px;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .messages {
+            margin-bottom: 20px;
+        }
+
+        .alert {
+            padding: 12px 20px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .form-help {
+            font-size: 0.9em;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+
+        .required {
+            color: #dc3545;
+        }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .time-slot {
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+            border-radius: 6px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .time-slot:hover {
+            background: #e9ecef;
+            border-color: #2196F3;
+        }
+
+        .time-slot.selected {
+            background: #2196F3;
+            color: white;
+            border-color: #2196F3;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .time-slots {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📅 Book Appointment</h1>
+            <p>Schedule your visit with the doctor</p>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-buttons">
+                <a href="{% url 'patient_dashboard' %}" class="nav-btn">🏠 Dashboard</a>
+                <a href="{% url 'appointments:doctor_search' %}" class="nav-btn">🔍 Find Doctors</a>
+                <a href="{% url 'appointments:patient_appointments' %}" class="nav-btn">📅 My Appointments</a>
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- Doctor Summary -->
+            <div class="doctor-summary">
+                <div class="doctor-name">Dr. {{ doctor.user.get_full_name }}</div>
+                <div class="doctor-specialty">{{ doctor.specialization.name }}</div>
+                <div class="doctor-info">{{ doctor.department.name }} | {{ doctor.experience_years }} years experience</div>
+            </div>
+
+            <!-- Messages -->
+            {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                <div class="alert alert-{% if message.tags == 'error' %}error{% else %}{{ message.tags }}{% endif %}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- Booking Form -->
+            <div class="form-section">
+                <div class="section-title">📝 Appointment Details</div>
+                
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="{{ form.appointment_date.id_for_label }}">
+                                Appointment Date <span class="required">*</span>
+                            </label>
+                            {{ form.appointment_date }}
+                            {% if form.appointment_date.errors %}
+                                <div class="form-help" style="color: #dc3545;">
+                                    {{ form.appointment_date.errors }}
+                                </div>
+                            {% endif %}
+                            <div class="form-help">Select your preferred date</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="{{ form.appointment_time.id_for_label }}">
+                                Appointment Time <span class="required">*</span>
+                            </label>
+                            {{ form.appointment_time }}
+                            {% if form.appointment_time.errors %}
+                                <div class="form-help" style="color: #dc3545;">
+                                    {{ form.appointment_time.errors }}
+                                </div>
+                            {% endif %}
+                            <div class="form-help">Select your preferred time</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="{{ form.duration.id_for_label }}">
+                            Duration (minutes) <span class="required">*</span>
+                        </label>
+                        {{ form.duration }}
+                        {% if form.duration.errors %}
+                            <div class="form-help" style="color: #dc3545;">
+                                {{ form.duration.errors }}
+                            </div>
+                        {% endif %}
+                        <div class="form-help">Estimated appointment duration</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="{{ form.appointment_type.id_for_label }}">
+                            Appointment Type <span class="required">*</span>
+                        </label>
+                        {{ form.appointment_type }}
+                        {% if form.appointment_type.errors %}
+                            <div class="form-help" style="color: #dc3545;">
+                                {{ form.appointment_type.errors }}
+                            </div>
+                        {% endif %}
+                        <div class="form-help">Select the type of appointment</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="{{ form.reason.id_for_label }}">
+                            Reason for Visit
+                        </label>
+                        {{ form.reason }}
+                        {% if form.reason.errors %}
+                            <div class="form-help" style="color: #dc3545;">
+                                {{ form.reason.errors }}
+                            </div>
+                        {% endif %}
+                        <div class="form-help">Brief description of your symptoms or reason for visit</div>
+                    </div>
+                    
+                    <div style="margin-top: 30px;">
+                        <a href="{% url 'appointments:doctor_detail' doctor.id %}" class="btn-secondary">← Back to Doctor</a>
+                        <button type="submit" class="btn-submit">📅 Book Appointment</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Auto-populate date and time if passed via URL parameters
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const date = urlParams.get('date');
+            const time = urlParams.get('time');
+            
+            console.log('URL date:', date);
+            console.log('URL time:', time);
+            
+            if (date) {
+                const dateField = document.querySelector('input[name="appointment_date"]');
+                if (dateField) {
+                    dateField.value = date;
+                    console.log('Set date field to:', date);
+                }
+            }
+            
+            if (time) {
+                const timeField = document.querySelector('input[name="appointment_time"]');
+                if (timeField) {
+                    timeField.value = time;
+                    console.log('Set time field to:', time);
+                }
+            }
+        });
+
+        // Validate appointment date (must be in the future)
+        document.querySelector('input[name="appointment_date"]').addEventListener('change', function() {
+            const selectedDate = new Date(this.value);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            
+            if (selectedDate < today) {
+                alert('Please select a future date for your appointment.');
+                this.value = '';
+            }
+        });
+    </script>
+</body>
+</html>

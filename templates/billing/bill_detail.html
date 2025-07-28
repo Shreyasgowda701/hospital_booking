@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill Details - HMS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .navbar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .header h1 {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .bill-status {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            margin-left: 1rem;
+        }
+
+        .status-paid {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4CAF50;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+        }
+
+        .status-pending {
+            background: rgba(255, 152, 0, 0.2);
+            color: #FF9800;
+            border: 1px solid rgba(255, 152, 0, 0.3);
+        }
+
+        .status-overdue {
+            background: rgba(244, 67, 54, 0.2);
+            color: #f44336;
+            border: 1px solid rgba(244, 67, 54, 0.3);
+        }
+
+        .status-partial {
+            background: rgba(33, 150, 243, 0.2);
+            color: #2196F3;
+            border: 1px solid rgba(33, 150, 243, 0.3);
+        }
+
+        .bill-content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 2rem;
+        }
+
+        .bill-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+            color: white;
+        }
+
+        .info-group h3 {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .info-label {
+            opacity: 0.8;
+        }
+
+        .info-value {
+            font-weight: 500;
+        }
+
+        .items-section,
+        .payments-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title i {
+            margin-right: 0.5rem;
+        }
+
+        .items-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .items-table th,
+        .items-table td {
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .items-table th {
+            background: rgba(255, 255, 255, 0.1);
+            font-weight: 600;
+        }
+
+        .payment-form {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-label {
+            display: block;
+            color: white;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-input,
+        .form-select {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            color: white;
+            font-family: inherit;
+        }
+
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .form-select option {
+            background: #333;
+            color: white;
+        }
+
+        .btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            font-family: inherit;
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .btn i {
+            margin-right: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #45a049, #4CAF50);
+        }
+
+        .totals-summary {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            color: white;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .total-row.final {
+            border-top: 2px solid rgba(255, 255, 255, 0.3);
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+            border-bottom: none;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        @media (max-width: 768px) {
+            .navbar-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .bill-info {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .items-table {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="{% url 'home' %}" class="logo">
+                <i class="fas fa-hospital-alt"></i> HMS
+            </a>
+            <ul class="nav-links">
+                <li><a href="{% url 'billing:dashboard' %}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="{% url 'billing:bill_list' %}"><i class="fas fa-file-invoice"></i> Bills</a></li>
+                {% if user.role == 'admin' or user.role == 'doctor' %}
+                <li><a href="{% url 'billing:create_bill' %}"><i class="fas fa-plus"></i> New Bill</a></li>
+                {% endif %}
+                <li><a href="{% url 'billing:payment_history' %}"><i class="fas fa-history"></i> Payments</a></li>
+                {% if user.role == 'admin' %}
+                <li><a href="{% url 'admins:dashboard' %}"><i class="fas fa-shield-alt"></i> Admin Panel</a></li>
+                {% endif %}
+                {% if user.role == 'doctor' %}
+                <li><a href="{% url 'doctor_dashboard' %}"><i class="fas fa-user-md"></i> Doctor Panel</a></li>
+                {% endif %}
+                {% if user.role == 'patient' %}
+                <li><a href="{% url 'patient_dashboard' %}"><i class="fas fa-user"></i> Patient Panel</a></li>
+                {% endif %}
+                <li><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="header">
+            <h1>
+                <i class="fas fa-file-invoice"></i> Bill {{ bill.bill_number }}
+                <span class="bill-status status-{{ bill.status }}">
+                    {{ bill.get_status_display }}
+                </span>
+            </h1>
+        </div>
+
+        <!-- Bill Information -->
+        <div class="bill-content">
+            <div class="bill-info">
+                <div class="info-group">
+                    <h3><i class="fas fa-user"></i> Patient Information</h3>
+                    <div class="info-item">
+                        <span class="info-label">Name:</span>
+                        <span class="info-value">{{ bill.patient.get_full_name }}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Email:</span>
+                        <span class="info-value">{{ bill.patient.email }}</span>
+                    </div>
+                    {% if bill.appointment %}
+                    <div class="info-item">
+                        <span class="info-label">Related Appointment:</span>
+                        <span class="info-value">{{ bill.appointment.date }} with Dr. {{ bill.appointment.doctor.get_full_name }}</span>
+                    </div>
+                    {% endif %}
+                </div>
+                
+                <div class="info-group">
+                    <h3><i class="fas fa-calendar"></i> Bill Dates</h3>
+                    <div class="info-item">
+                        <span class="info-label">Issue Date:</span>
+                        <span class="info-value">{{ bill.issue_date|date:"M d, Y" }}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Due Date:</span>
+                        <span class="info-value">{{ bill.due_date|date:"M d, Y" }}</span>
+                    </div>
+                    {% if bill.created_by %}
+                    <div class="info-item">
+                        <span class="info-label">Created By:</span>
+                        <span class="info-value">{{ bill.created_by.get_full_name }}</span>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            {% if bill.notes %}
+            <div class="info-item">
+                <span class="info-label">Notes:</span>
+                <span class="info-value">{{ bill.notes }}</span>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Bill Items -->
+        <div class="items-section">
+            <h3 class="section-title">
+                <i class="fas fa-list"></i> Services & Items
+            </h3>
+            <table class="items-table">
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Quantity</th>
+                        <th>Unit Price</th>
+                        <th>Total</th>
+                        <th>Date Provided</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in bill_items %}
+                    <tr>
+                        <td>
+                            <strong>{{ item.service.name }}</strong>
+                            {% if item.description %}
+                            <br><small style="opacity: 0.8;">{{ item.description }}</small>
+                            {% endif %}
+                        </td>
+                        <td>{{ item.quantity }}</td>
+                        <td>${{ item.unit_price|floatformat:2 }}</td>
+                        <td>${{ item.total_price|floatformat:2 }}</td>
+                        <td>{{ item.date_provided|date:"M d, Y" }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" style="text-align: center; opacity: 0.7;">No items found</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Bill Totals -->
+        <div class="totals-summary">
+            <h3 class="section-title">
+                <i class="fas fa-calculator"></i> Bill Summary
+            </h3>
+            <div class="total-row">
+                <span>Subtotal:</span>
+                <span>${{ bill.subtotal|floatformat:2 }}</span>
+            </div>
+            {% if bill.tax_rate > 0 %}
+            <div class="total-row">
+                <span>Tax ({{ bill.tax_rate }}%):</span>
+                <span>${{ bill.tax_amount|floatformat:2 }}</span>
+            </div>
+            {% endif %}
+            {% if bill.discount_amount > 0 %}
+            <div class="total-row">
+                <span>Discount:</span>
+                <span>-${{ bill.discount_amount|floatformat:2 }}</span>
+            </div>
+            {% endif %}
+            <div class="total-row final">
+                <span>Total Amount:</span>
+                <span>${{ bill.total_amount|floatformat:2 }}</span>
+            </div>
+            <div class="total-row">
+                <span>Paid Amount:</span>
+                <span>${{ bill.paid_amount|floatformat:2 }}</span>
+            </div>
+            <div class="total-row final">
+                <span>Balance Due:</span>
+                <span>${{ bill.balance_amount|floatformat:2 }}</span>
+            </div>
+        </div>
+
+        <!-- Payment Form (for admin/doctor only) -->
+        {% if user.role == 'admin' or user.role == 'doctor' %}
+        {% if bill.balance_amount > 0 %}
+        <div class="payment-form" id="payment">
+            <h3 class="section-title">
+                <i class="fas fa-credit-card"></i> Record Payment
+            </h3>
+            <form method="POST" action="{% url 'billing:record_payment' bill.id %}">
+                {% csrf_token %}
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label">Amount *</label>
+                        <input type="number" name="amount" class="form-input" max="{{ bill.balance_amount }}" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Payment Method *</label>
+                        <select name="payment_method" class="form-select" required>
+                            <option value="">Select Method</option>
+                            <option value="cash">Cash</option>
+                            <option value="card">Credit/Debit Card</option>
+                            <option value="bank_transfer">Bank Transfer</option>
+                            <option value="insurance">Insurance</option>
+                            <option value="check">Check</option>
+                            <option value="online">Online Payment</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Transaction ID</label>
+                        <input type="text" name="transaction_id" class="form-input" placeholder="Optional">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Reference Number</label>
+                        <input type="text" name="reference_number" class="form-input" placeholder="Optional">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Notes</label>
+                    <input type="text" name="notes" class="form-input" placeholder="Payment notes (optional)">
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i> Record Payment
+                </button>
+            </form>
+        </div>
+        {% endif %}
+        {% endif %}
+
+        <!-- Payment History -->
+        {% if payments %}
+        <div class="payments-section">
+            <h3 class="section-title">
+                <i class="fas fa-history"></i> Payment History
+            </h3>
+            <table class="items-table">
+                <thead>
+                    <tr>
+                        <th>Payment ID</th>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Method</th>
+                        <th>Status</th>
+                        <th>Processed By</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for payment in payments %}
+                    <tr>
+                        <td>{{ payment.payment_id }}</td>
+                        <td>{{ payment.payment_date|date:"M d, Y H:i" }}</td>
+                        <td>${{ payment.amount|floatformat:2 }}</td>
+                        <td>{{ payment.get_payment_method_display }}</td>
+                        <td>
+                            <span class="bill-status status-{{ payment.status }}">
+                                {{ payment.get_status_display }}
+                            </span>
+                        </td>
+                        <td>{{ payment.processed_by.get_full_name|default:"System" }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <a href="{% url 'billing:bill_list' %}" class="btn">
+                <i class="fas fa-arrow-left"></i> Back to Bills
+            </a>
+            <a href="{% url 'billing:dashboard' %}" class="btn">
+                <i class="fas fa-tachometer-alt"></i> Dashboard
+            </a>
+        </div>
+    </div>
+</body>
+</html>

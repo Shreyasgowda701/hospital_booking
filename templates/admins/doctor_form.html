@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ action }} Doctor - Admin Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .page-container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #dc3545;
+        }
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #dc3545;
+            padding: 8px 16px;
+            border: 1px solid #dc3545;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        .nav-links a:hover {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .form-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #dc3545;
+        }
+        .form-section h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #dc3545;
+            box-shadow: 0 0 5px rgba(220, 53, 69, 0.3);
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+        }
+        
+        .error-list {
+            list-style: none;
+            padding: 0;
+            margin: 5px 0;
+        }
+        .error-list li {
+            color: #dc3545;
+            font-size: 0.9em;
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-start;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #dee2e6;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+        .btn-primary {
+            background: #dc3545;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #c82333;
+        }
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        .btn-secondary:hover {
+            background: #545b62;
+        }
+        
+        .required {
+            color: #dc3545;
+        }
+        
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .nav-links {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <div class="header">
+            <h1>{{ action }} Doctor</h1>
+            <div class="nav-links">
+                <a href="{% url 'admins:doctor_management' %}">Back to Doctors</a>
+                <a href="{% url 'admin_dashboard' %}">Dashboard</a>
+            </div>
+        </div>
+        
+        <form method="POST">
+            {% csrf_token %}
+            
+            {% if action == 'Add' %}
+            <!-- User Account Information -->
+            <div class="form-section">
+                <h3>User Account Information</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="{{ user_form.username.id_for_label }}">Username <span class="required">*</span></label>
+                        {{ user_form.username }}
+                        {{ user_form.username.errors }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ user_form.email.id_for_label }}">Email <span class="required">*</span></label>
+                        {{ user_form.email }}
+                        {{ user_form.email.errors }}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="{{ user_form.first_name.id_for_label }}">First Name <span class="required">*</span></label>
+                        {{ user_form.first_name }}
+                        {{ user_form.first_name.errors }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ user_form.last_name.id_for_label }}">Last Name <span class="required">*</span></label>
+                        {{ user_form.last_name }}
+                        {{ user_form.last_name.errors }}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="{{ user_form.password1.id_for_label }}">Password <span class="required">*</span></label>
+                        {{ user_form.password1 }}
+                        {{ user_form.password1.errors }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ user_form.password2.id_for_label }}">Confirm Password <span class="required">*</span></label>
+                        {{ user_form.password2 }}
+                        {{ user_form.password2.errors }}
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <!-- User Information (Edit Mode) -->
+            <div class="form-section">
+                <h3>User Information</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="{{ user_form.first_name.id_for_label }}">First Name <span class="required">*</span></label>
+                        {{ user_form.first_name }}
+                        {{ user_form.first_name.errors }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ user_form.last_name.id_for_label }}">Last Name <span class="required">*</span></label>
+                        {{ user_form.last_name }}
+                        {{ user_form.last_name.errors }}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="{{ user_form.email.id_for_label }}">Email <span class="required">*</span></label>
+                        {{ user_form.email }}
+                        {{ user_form.email.errors }}
+                    </div>
+                    <div class="form-group checkbox-group">
+                        {{ user_form.is_active }}
+                        <label for="{{ user_form.is_active.id_for_label }}">Account Active</label>
+                        {{ user_form.is_active.errors }}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            
+            <!-- Doctor Profile Information -->
+            <div class="form-section">
+                <h3>Doctor Profile Information</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="{{ profile_form.department.id_for_label }}">Department <span class="required">*</span></label>
+                        {{ profile_form.department }}
+                        {{ profile_form.department.errors }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ profile_form.specialization.id_for_label }}">Specialization <span class="required">*</span></label>
+                        {{ profile_form.specialization }}
+                        {{ profile_form.specialization.errors }}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="{{ profile_form.license_number.id_for_label }}">License Number <span class="required">*</span></label>
+                        {{ profile_form.license_number }}
+                        {{ profile_form.license_number.errors }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ profile_form.experience_years.id_for_label }}">Experience (Years)</label>
+                        {{ profile_form.experience_years }}
+                        {{ profile_form.experience_years.errors }}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="{{ profile_form.qualification.id_for_label }}">Qualification</label>
+                        {{ profile_form.qualification }}
+                        {{ profile_form.qualification.errors }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ profile_form.consultation_fee.id_for_label }}">Consultation Fee ($)</label>
+                        {{ profile_form.consultation_fee }}
+                        {{ profile_form.consultation_fee.errors }}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="{{ profile_form.phone_number.id_for_label }}">Phone Number</label>
+                        {{ profile_form.phone_number }}
+                        {{ profile_form.phone_number.errors }}
+                    </div>
+                    <div class="form-group checkbox-group">
+                        {{ profile_form.is_available }}
+                        <label for="{{ profile_form.is_available.id_for_label }}">Available for Appointments</label>
+                        {{ profile_form.is_available.errors }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="{{ profile_form.biography.id_for_label }}">Biography</label>
+                    {{ profile_form.biography }}
+                    {{ profile_form.biography.errors }}
+                </div>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">{{ action }} Doctor</button>
+                <a href="{% url 'admins:doctor_management' %}" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,1207 @@
+[
+{
+  "model": "auth.permission",
+  "pk": 1,
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": 1,
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 2,
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": 1,
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 3,
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": 1,
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 4,
+  "fields": {
+    "name": "Can view log entry",
+    "content_type": 1,
+    "codename": "view_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 5,
+  "fields": {
+    "name": "Can add permission",
+    "content_type": 2,
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 6,
+  "fields": {
+    "name": "Can change permission",
+    "content_type": 2,
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 7,
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": 2,
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 8,
+  "fields": {
+    "name": "Can view permission",
+    "content_type": 2,
+    "codename": "view_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 9,
+  "fields": {
+    "name": "Can add group",
+    "content_type": 3,
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 10,
+  "fields": {
+    "name": "Can change group",
+    "content_type": 3,
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 11,
+  "fields": {
+    "name": "Can delete group",
+    "content_type": 3,
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 12,
+  "fields": {
+    "name": "Can view group",
+    "content_type": 3,
+    "codename": "view_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 13,
+  "fields": {
+    "name": "Can add content type",
+    "content_type": 4,
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 14,
+  "fields": {
+    "name": "Can change content type",
+    "content_type": 4,
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 15,
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": 4,
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 16,
+  "fields": {
+    "name": "Can view content type",
+    "content_type": 4,
+    "codename": "view_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 17,
+  "fields": {
+    "name": "Can add session",
+    "content_type": 5,
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 18,
+  "fields": {
+    "name": "Can change session",
+    "content_type": 5,
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 19,
+  "fields": {
+    "name": "Can delete session",
+    "content_type": 5,
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 20,
+  "fields": {
+    "name": "Can view session",
+    "content_type": 5,
+    "codename": "view_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 21,
+  "fields": {
+    "name": "Can add user",
+    "content_type": 6,
+    "codename": "add_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 22,
+  "fields": {
+    "name": "Can change user",
+    "content_type": 6,
+    "codename": "change_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 23,
+  "fields": {
+    "name": "Can delete user",
+    "content_type": 6,
+    "codename": "delete_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 24,
+  "fields": {
+    "name": "Can view user",
+    "content_type": 6,
+    "codename": "view_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 25,
+  "fields": {
+    "name": "Can add department",
+    "content_type": 7,
+    "codename": "add_department"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 26,
+  "fields": {
+    "name": "Can change department",
+    "content_type": 7,
+    "codename": "change_department"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 27,
+  "fields": {
+    "name": "Can delete department",
+    "content_type": 7,
+    "codename": "delete_department"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 28,
+  "fields": {
+    "name": "Can view department",
+    "content_type": 7,
+    "codename": "view_department"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 29,
+  "fields": {
+    "name": "Can add doctor availability",
+    "content_type": 8,
+    "codename": "add_doctoravailability"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 30,
+  "fields": {
+    "name": "Can change doctor availability",
+    "content_type": 8,
+    "codename": "change_doctoravailability"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 31,
+  "fields": {
+    "name": "Can delete doctor availability",
+    "content_type": 8,
+    "codename": "delete_doctoravailability"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 32,
+  "fields": {
+    "name": "Can view doctor availability",
+    "content_type": 8,
+    "codename": "view_doctoravailability"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 33,
+  "fields": {
+    "name": "Can add specialization",
+    "content_type": 9,
+    "codename": "add_specialization"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 34,
+  "fields": {
+    "name": "Can change specialization",
+    "content_type": 9,
+    "codename": "change_specialization"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 35,
+  "fields": {
+    "name": "Can delete specialization",
+    "content_type": 9,
+    "codename": "delete_specialization"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 36,
+  "fields": {
+    "name": "Can view specialization",
+    "content_type": 9,
+    "codename": "view_specialization"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 37,
+  "fields": {
+    "name": "Can add doctor",
+    "content_type": 10,
+    "codename": "add_doctor"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 38,
+  "fields": {
+    "name": "Can change doctor",
+    "content_type": 10,
+    "codename": "change_doctor"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 39,
+  "fields": {
+    "name": "Can delete doctor",
+    "content_type": 10,
+    "codename": "delete_doctor"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 40,
+  "fields": {
+    "name": "Can view doctor",
+    "content_type": 10,
+    "codename": "view_doctor"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 41,
+  "fields": {
+    "name": "Can add appointment",
+    "content_type": 11,
+    "codename": "add_appointment"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 42,
+  "fields": {
+    "name": "Can change appointment",
+    "content_type": 11,
+    "codename": "change_appointment"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 43,
+  "fields": {
+    "name": "Can delete appointment",
+    "content_type": 11,
+    "codename": "delete_appointment"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 44,
+  "fields": {
+    "name": "Can view appointment",
+    "content_type": 11,
+    "codename": "view_appointment"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 45,
+  "fields": {
+    "name": "Can add patient history",
+    "content_type": 12,
+    "codename": "add_patienthistory"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 46,
+  "fields": {
+    "name": "Can change patient history",
+    "content_type": 12,
+    "codename": "change_patienthistory"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 47,
+  "fields": {
+    "name": "Can delete patient history",
+    "content_type": 12,
+    "codename": "delete_patienthistory"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 48,
+  "fields": {
+    "name": "Can view patient history",
+    "content_type": 12,
+    "codename": "view_patienthistory"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 49,
+  "fields": {
+    "name": "Can add review",
+    "content_type": 13,
+    "codename": "add_review"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 50,
+  "fields": {
+    "name": "Can change review",
+    "content_type": 13,
+    "codename": "change_review"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 51,
+  "fields": {
+    "name": "Can delete review",
+    "content_type": 13,
+    "codename": "delete_review"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 52,
+  "fields": {
+    "name": "Can view review",
+    "content_type": 13,
+    "codename": "view_review"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 1,
+  "fields": {
+    "app_label": "admin",
+    "model": "logentry"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 2,
+  "fields": {
+    "app_label": "auth",
+    "model": "permission"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 3,
+  "fields": {
+    "app_label": "auth",
+    "model": "group"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 4,
+  "fields": {
+    "app_label": "contenttypes",
+    "model": "contenttype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 5,
+  "fields": {
+    "app_label": "sessions",
+    "model": "session"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 6,
+  "fields": {
+    "app_label": "users",
+    "model": "user"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 7,
+  "fields": {
+    "app_label": "doctors",
+    "model": "department"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 8,
+  "fields": {
+    "app_label": "doctors",
+    "model": "doctoravailability"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 9,
+  "fields": {
+    "app_label": "doctors",
+    "model": "specialization"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 10,
+  "fields": {
+    "app_label": "doctors",
+    "model": "doctor"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 11,
+  "fields": {
+    "app_label": "appointments",
+    "model": "appointment"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 12,
+  "fields": {
+    "app_label": "appointments",
+    "model": "patienthistory"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 13,
+  "fields": {
+    "app_label": "appointments",
+    "model": "review"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "8chhaaw4ojgtup5w8crxjjq3x0eg85dp",
+  "fields": {
+    "session_data": ".eJxVjDsOwyAQBe9CHSHzxynT-wxogd3gJALJ2FWUu0dILpL2zcx7swDHXsLRcQtrZlcm2eV3i5CeWAfID6j3xlOr-7ZGPhR-0s6XlvF1O92_gwK9jNo5aawDHaeU0-QpK3Iko3FWW6MhoZGz9oJU1sILgaiUVWQpKYqzkOzzBeAdN60:1ufF3C:zltyinjvdc7jD5b3embG6OnNjoXisaKIX-Jg3j6BOz8",
+    "expire_date": "2025-08-08T09:49:14.976Z"
+  }
+},
+{
+  "model": "users.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$v9aTDBbjSQLjHFk4cS3fM7$z3KBJhwqKyNnmhS2GNdSgtiJ8yzkRYTEXWSgWP99UQg=",
+    "last_login": null,
+    "is_superuser": true,
+    "username": "e5714745",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-07-24T19:23:13.046Z",
+    "role": "patient",
+    "phone_number": "",
+    "date_of_birth": null,
+    "gender": "",
+    "address": "",
+    "emergency_contact_name": "",
+    "emergency_contact_phone": "",
+    "blood_group": "",
+    "created_at": "2025-07-24T19:23:13.145Z",
+    "updated_at": "2025-07-24T19:23:13.145Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$hae15YrpVPhuyWJxZr8thW$nt+WeT/WWS38SotIGfZoupiRgPbxzEFiiIwMBFxPFzs=",
+    "last_login": "2025-07-25T09:49:14.974Z",
+    "is_superuser": true,
+    "username": "shreyasadmin",
+    "first_name": "",
+    "last_name": "",
+    "email": "shreyas@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-07-24T19:25:12.852Z",
+    "role": "admin",
+    "phone_number": "",
+    "date_of_birth": null,
+    "gender": "",
+    "address": "",
+    "emergency_contact_name": "",
+    "emergency_contact_phone": "",
+    "blood_group": "",
+    "created_at": "2025-07-24T19:25:12.961Z",
+    "updated_at": "2025-07-24T19:25:12.961Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$yWJqnlBuZKmRGBh91k9aj9$r4VsRVOdQRxaJAeDiD0w5RezPIuPPWN56GcAXT2xTmE=",
+    "last_login": "2025-07-25T09:43:31.551Z",
+    "is_superuser": false,
+    "username": "shreyasPatient",
+    "first_name": "",
+    "last_name": "",
+    "email": "shreyas.gowdahn@fisglobal.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-07-24T19:26:19.252Z",
+    "role": "patient",
+    "phone_number": "",
+    "date_of_birth": null,
+    "gender": "",
+    "address": "",
+    "emergency_contact_name": "",
+    "emergency_contact_phone": "",
+    "blood_group": "",
+    "created_at": "2025-07-24T19:26:19.363Z",
+    "updated_at": "2025-07-24T19:26:19.363Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$aLE2lgHmbMsZyKengpuT1P$+mQXBBe6caymwmIWu6P54zZP+qEFU0/o/IibAvAA75s=",
+    "last_login": "2025-07-25T08:59:59.310Z",
+    "is_superuser": false,
+    "username": "shreyasdoctor",
+    "first_name": "Shreyas",
+    "last_name": "Gowda",
+    "email": "Ahmad.Sheikh@fisglobal.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-07-24T19:50:57.888Z",
+    "role": "doctor",
+    "phone_number": "",
+    "date_of_birth": null,
+    "gender": "",
+    "address": "",
+    "emergency_contact_name": "",
+    "emergency_contact_phone": "",
+    "blood_group": "",
+    "created_at": "2025-07-24T19:50:58.008Z",
+    "updated_at": "2025-07-24T19:50:58.008Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$S7Dmb5GwOUoBLrJM9IS0Cj$ddJ+nAuszrLpw8TdWEkHEU0c1z+zjXdj5G4XGFhy4nc=",
+    "last_login": "2025-07-25T08:35:35.086Z",
+    "is_superuser": false,
+    "username": "shreyasdoctor2",
+    "first_name": "Shreyas",
+    "last_name": "gowda",
+    "email": "shreyas@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-07-25T07:59:15.497Z",
+    "role": "doctor",
+    "phone_number": "",
+    "date_of_birth": null,
+    "gender": "",
+    "address": "",
+    "emergency_contact_name": "",
+    "emergency_contact_phone": "",
+    "blood_group": "",
+    "created_at": "2025-07-25T07:59:15.612Z",
+    "updated_at": "2025-07-25T07:59:47.548Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "doctors.department",
+  "pk": 1,
+  "fields": {
+    "name": "Internal Medicine",
+    "description": "Medical specialty dealing with prevention, diagnosis, and treatment of adult diseases",
+    "created_at": "2025-07-24T19:49:30.733Z"
+  }
+},
+{
+  "model": "doctors.department",
+  "pk": 2,
+  "fields": {
+    "name": "Surgery",
+    "description": "Medical specialty using operative manual and instrumental techniques",
+    "created_at": "2025-07-24T19:49:30.734Z"
+  }
+},
+{
+  "model": "doctors.department",
+  "pk": 3,
+  "fields": {
+    "name": "Pediatrics",
+    "description": "Medical care of infants, children, and adolescents",
+    "created_at": "2025-07-24T19:49:30.735Z"
+  }
+},
+{
+  "model": "doctors.department",
+  "pk": 4,
+  "fields": {
+    "name": "Obstetrics & Gynecology",
+    "description": "Medical and surgical specialty dealing with women's health",
+    "created_at": "2025-07-24T19:49:30.735Z"
+  }
+},
+{
+  "model": "doctors.department",
+  "pk": 5,
+  "fields": {
+    "name": "Orthopedics",
+    "description": "Medical specialty focused on injuries and diseases of the musculoskeletal system",
+    "created_at": "2025-07-24T19:49:30.736Z"
+  }
+},
+{
+  "model": "doctors.department",
+  "pk": 6,
+  "fields": {
+    "name": "Cardiology",
+    "description": "Medical specialty dealing with disorders of the heart and blood vessels",
+    "created_at": "2025-07-24T19:49:30.737Z"
+  }
+},
+{
+  "model": "doctors.department",
+  "pk": 7,
+  "fields": {
+    "name": "Dermatology",
+    "description": "Medical specialty dealing with skin, hair, nails, and related disorders",
+    "created_at": "2025-07-24T19:49:30.738Z"
+  }
+},
+{
+  "model": "doctors.department",
+  "pk": 8,
+  "fields": {
+    "name": "Neurology",
+    "description": "Medical specialty dealing with disorders of the nervous system",
+    "created_at": "2025-07-24T19:49:30.739Z"
+  }
+},
+{
+  "model": "doctors.specialization",
+  "pk": 1,
+  "fields": {
+    "name": "General Internal Medicine",
+    "department": 1,
+    "description": ""
+  }
+},
+{
+  "model": "doctors.specialization",
+  "pk": 2,
+  "fields": {
+    "name": "Endocrinology",
+    "department": 1,
+    "description": ""
+  }
+},
+{
+  "model": "doctors.specialization",
+  "pk": 3,
+  "fields": {
+    "name": "Gastroenterology",
+    "department": 1,
+    "description": ""
+  }
+},
+{
+  "model": "doctors.specialization",
+  "pk": 4,
+  "fields": {
+    "name": "Infectious Disease",
+    "department": 1,
+    "description": ""
+  }
+},
+{
+  "model": "doctors.specialization",
+  "pk": 5,
+  "fields": {
+    "name": "General Surgery",
+    "department": 2,
+    "description": ""
+  }
+},
+{
+  "model": "doctors.specialization",
+  "pk": 6,
+  "fields": {
+    "name": "Plastic Surgery",
+    "department": 2,
+    "description": ""
+  }
+},
+{
+  "model": "doctors.specialization",
+  "pk": 7,
+  "fields": {
+    "name": "Vascular Surgery",
+    "department": 2,
+    "description": ""
+  }
+},
+{
+  "model": "doctors.specialization",
+  "pk": 8,
+  "fields": {
+    "name": "Neurosurgery",
+    "department": 2,
+    "description": ""
+  }
+},
+{
+  "model": "doctors.specialization",
+  "pk": 9,
+  "fields": {
+    "name": "General Pediatrics",
+    "department": 3,
+    "description": ""
+  }
+},
+{
+  "model": "doctors.specialization",
+  "pk": 10,
+  "fields": {
+    "name": "Pediatric Cardiology",
+    "department": 3,
+    "description": ""
+  }
+},
+{
+  "model": "doctors.specialization",
+  "pk": 11,
+  "fields": {
+    "name": "Pediatric Surgery",
+    "department": 3,
+    "description": ""
+  }
+},
+{
+  "model": "doctors.specialization",
+  "pk": 12,
+  "fields": {
+    "name": "Obstetrics",
+    "department": 4,
+    "description": ""
+  }
+},
+{
+  "model": "doctors.specialization",
+  "pk": 13,
+  "fields": {
+    "name": "Gynecology",
+    "department": 4,
+    "description": ""
+  }
+},
+{
+  "model": "doctors.specialization",
+  "pk": 14,
+  "fields": {
+    "name": "Reproductive Endocrinology",
+    "department": 4,
+    "description": ""
+  }
+},
+{
+  "model": "doctors.specialization",
+  "pk": 15,
+  "fields": {
+    "name": "General Orthopedics",
+    "department": 5,
+    "description": ""
+  }
+},
+{
+  "model": "doctors.specialization",
+  "pk": 16,
+  "fields": {
+    "name": "Sports Medicine",
+    "department": 5,
+    "description": ""
+  }
+},
+{
+  "model": "doctors.specialization",
+  "pk": 17,
+  "fields": {
+    "name": "Spine Surgery",
+    "department": 5,
+    "description": ""
+  }
+},
+{
+  "model": "doctors.specialization",
+  "pk": 18,
+  "fields": {
+    "name": "General Cardiology",
+    "department": 6,
+    "description": ""
+  }
+},
+{
+  "model": "doctors.specialization",
+  "pk": 19,
+  "fields": {
+    "name": "Interventional Cardiology",
+    "department": 6,
+    "description": ""
+  }
+},
+{
+  "model": "doctors.specialization",
+  "pk": 20,
+  "fields": {
+    "name": "Electrophysiology",
+    "department": 6,
+    "description": ""
+  }
+},
+{
+  "model": "doctors.specialization",
+  "pk": 22,
+  "fields": {
+    "name": "Dermatopathology",
+    "department": 7,
+    "description": ""
+  }
+},
+{
+  "model": "doctors.specialization",
+  "pk": 23,
+  "fields": {
+    "name": "Pediatric Dermatology",
+    "department": 7,
+    "description": ""
+  }
+},
+{
+  "model": "doctors.specialization",
+  "pk": 24,
+  "fields": {
+    "name": "General Neurology",
+    "department": 8,
+    "description": ""
+  }
+},
+{
+  "model": "doctors.specialization",
+  "pk": 25,
+  "fields": {
+    "name": "Epilepsy",
+    "department": 8,
+    "description": ""
+  }
+},
+{
+  "model": "doctors.specialization",
+  "pk": 26,
+  "fields": {
+    "name": "Movement Disorders",
+    "department": 8,
+    "description": ""
+  }
+},
+{
+  "model": "doctors.specialization",
+  "pk": 27,
+  "fields": {
+    "name": "Dermatologiest",
+    "department": 7,
+    "description": ""
+  }
+},
+{
+  "model": "doctors.doctor",
+  "pk": 1,
+  "fields": {
+    "user": 4,
+    "specialization": 1,
+    "department": 1,
+    "license_number": "LIC000004",
+    "experience_years": 0,
+    "qualification": "General Practitioner",
+    "consultation_fee": "0.00",
+    "biography": "",
+    "is_available": true,
+    "rating": 0.0,
+    "total_reviews": 0,
+    "phone_number": "",
+    "created_at": "2025-07-24T19:50:58.011Z",
+    "updated_at": "2025-07-24T19:50:58.011Z"
+  }
+},
+{
+  "model": "doctors.doctor",
+  "pk": 2,
+  "fields": {
+    "user": 5,
+    "specialization": 1,
+    "department": 1,
+    "license_number": "TEMP0001",
+    "experience_years": 0,
+    "qualification": "General Practitioner",
+    "consultation_fee": "200.00",
+    "biography": "",
+    "is_available": true,
+    "rating": 0.0,
+    "total_reviews": 0,
+    "phone_number": "",
+    "created_at": "2025-07-25T07:59:15.614Z",
+    "updated_at": "2025-07-25T07:59:15.614Z"
+  }
+},
+{
+  "model": "doctors.doctoravailability",
+  "pk": 1,
+  "fields": {
+    "doctor": 1,
+    "day_of_week": 0,
+    "start_time": "09:00:00",
+    "end_time": "17:00:00",
+    "is_available": true
+  }
+},
+{
+  "model": "doctors.doctoravailability",
+  "pk": 2,
+  "fields": {
+    "doctor": 1,
+    "day_of_week": 1,
+    "start_time": "09:00:00",
+    "end_time": "17:00:00",
+    "is_available": true
+  }
+},
+{
+  "model": "doctors.doctoravailability",
+  "pk": 3,
+  "fields": {
+    "doctor": 1,
+    "day_of_week": 2,
+    "start_time": "09:00:00",
+    "end_time": "17:00:00",
+    "is_available": true
+  }
+},
+{
+  "model": "doctors.doctoravailability",
+  "pk": 4,
+  "fields": {
+    "doctor": 1,
+    "day_of_week": 3,
+    "start_time": "09:00:00",
+    "end_time": "17:00:00",
+    "is_available": true
+  }
+},
+{
+  "model": "doctors.doctoravailability",
+  "pk": 5,
+  "fields": {
+    "doctor": 2,
+    "day_of_week": 0,
+    "start_time": "09:00:00",
+    "end_time": "17:00:00",
+    "is_available": true
+  }
+},
+{
+  "model": "appointments.appointment",
+  "pk": 1,
+  "fields": {
+    "patient": 3,
+    "doctor": 1,
+    "appointment_date": "2025-07-28T12:00:00Z",
+    "appointment_type": "consultation",
+    "status": "confirmed",
+    "duration": 30,
+    "reason": "test",
+    "reason_for_visit": "test",
+    "notes": "",
+    "doctor_notes": "",
+    "prescription": "",
+    "diagnosis": "",
+    "follow_up_date": null,
+    "created_at": "2025-07-24T20:17:14.636Z",
+    "updated_at": "2025-07-24T20:23:24.260Z"
+  }
+},
+{
+  "model": "appointments.appointment",
+  "pk": 2,
+  "fields": {
+    "patient": 3,
+    "doctor": 1,
+    "appointment_date": "2025-07-28T13:30:00Z",
+    "appointment_type": "routine_checkup",
+    "status": "confirmed",
+    "duration": 30,
+    "reason": "",
+    "reason_for_visit": "",
+    "notes": "",
+    "doctor_notes": "",
+    "prescription": "",
+    "diagnosis": "",
+    "follow_up_date": null,
+    "created_at": "2025-07-24T20:17:39.397Z",
+    "updated_at": "2025-07-24T20:23:28.808Z"
+  }
+},
+{
+  "model": "appointments.appointment",
+  "pk": 3,
+  "fields": {
+    "patient": 3,
+    "doctor": 1,
+    "appointment_date": "2025-07-28T12:30:00Z",
+    "appointment_type": "consultation",
+    "status": "cancelled",
+    "duration": 30,
+    "reason": "",
+    "reason_for_visit": "",
+    "notes": "",
+    "doctor_notes": "",
+    "prescription": "",
+    "diagnosis": "",
+    "follow_up_date": null,
+    "created_at": "2025-07-24T20:21:32.446Z",
+    "updated_at": "2025-07-24T20:23:53.098Z"
+  }
+},
+{
+  "model": "appointments.appointment",
+  "pk": 4,
+  "fields": {
+    "patient": 3,
+    "doctor": 1,
+    "appointment_date": "2025-07-30T10:00:00Z",
+    "appointment_type": "consultation",
+    "status": "confirmed",
+    "duration": 30,
+    "reason": "",
+    "reason_for_visit": "",
+    "notes": "",
+    "doctor_notes": "",
+    "prescription": "",
+    "diagnosis": "",
+    "follow_up_date": null,
+    "created_at": "2025-07-25T08:02:05.892Z",
+    "updated_at": "2025-07-25T08:28:11.121Z"
+  }
+}
+]

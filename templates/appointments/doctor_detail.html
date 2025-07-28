@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. {{ doctor.user.get_full_name }} - Doctor Details</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(45deg, #2196F3, #21CBF3);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .nav-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .doctor-profile {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .doctor-info {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 5px solid #2196F3;
+        }
+
+        .doctor-name {
+            font-size: 2em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .doctor-specialty {
+            font-size: 1.2em;
+            color: #2196F3;
+            margin-bottom: 15px;
+        }
+
+        .info-item {
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: #495057;
+        }
+
+        .info-value {
+            color: #6c757d;
+        }
+
+        .rating-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .stars {
+            color: #ffc107;
+            font-size: 1.2em;
+        }
+
+        .rating-text {
+            color: #6c757d;
+        }
+
+        .availability-section {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .section-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .availability-grid {
+            display: grid;
+            gap: 15px;
+        }
+
+        .date-slot {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .date-header {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
+        }
+
+        .time-slot {
+            background: #2196F3;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+
+        .time-slot:hover {
+            background: #1976D2;
+            transform: translateY(-2px);
+        }
+
+        .no-availability {
+            text-align: center;
+            padding: 40px;
+            color: #6c757d;
+        }
+
+        .book-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            display: block;
+            width: 100%;
+        }
+
+        .book-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .reviews-section {
+            margin-top: 40px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 30px;
+        }
+
+        .review-item {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 3px solid #2196F3;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .reviewer-name {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .review-date {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+
+        .review-rating {
+            color: #ffc107;
+            margin-bottom: 10px;
+        }
+
+        .review-text {
+            color: #495057;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .doctor-profile {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .time-slots {
+                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🩺 Doctor Profile</h1>
+            <p>View doctor details and book an appointment</p>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-buttons">
+                <a href="{% url 'patient_dashboard' %}" class="nav-btn">🏠 Dashboard</a>
+                <a href="{% url 'appointments:doctor_search' %}" class="nav-btn">🔍 Find Doctors</a>
+                <a href="{% url 'appointments:patient_appointments' %}" class="nav-btn">📅 My Appointments</a>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="doctor-profile">
+                <div class="doctor-info">
+                    <div class="doctor-name">Dr. {{ doctor.user.get_full_name }}</div>
+                    <div class="doctor-specialty">{{ doctor.specialization.name }}</div>
+                    
+                    <div class="info-item">
+                        <span class="info-label">Department:</span>
+                        <span class="info-value">{{ doctor.department.name }}</span>
+                    </div>
+                    
+                    <div class="info-item">
+                        <span class="info-label">Experience:</span>
+                        <span class="info-value">{{ doctor.experience_years }} years</span>
+                    </div>
+                    
+                    <div class="info-item">
+                        <span class="info-label">Education:</span>
+                        <span class="info-value">{{ doctor.education|default:"Not specified" }}</span>
+                    </div>
+                    
+                    <div class="info-item">
+                        <span class="info-label">License:</span>
+                        <span class="info-value">{{ doctor.license_number }}</span>
+                    </div>
+                    
+                    <div class="info-item">
+                        <span class="info-label">Phone:</span>
+                        <span class="info-value">{{ doctor.phone_number|default:"Not provided" }}</span>
+                    </div>
+                    
+                    <div class="rating-section">
+                        <div class="stars">
+                            {% for i in "12345" %}
+                                {% if forloop.counter <= avg_rating %}
+                                    ⭐
+                                {% else %}
+                                    ☆
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <span class="rating-text">{{ avg_rating|floatformat:1 }}/5 ({{ total_reviews }} reviews)</span>
+                    </div>
+
+                    {% if doctor.bio %}
+                    <div style="margin-top: 20px;">
+                        <div class="info-label">About:</div>
+                        <p style="margin-top: 10px; color: #495057; line-height: 1.5;">{{ doctor.bio }}</p>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="availability-section">
+                    <div class="section-title">📅 Available Time Slots</div>
+                    
+                    {% if availability_slots %}
+                        <div class="availability-grid">
+                            {% for slot in availability_slots %}
+                            <div class="date-slot">
+                                <div class="date-header">{{ slot.date|date:"l, M d, Y" }}</div>
+                                <div class="time-slots">
+                                    {% for time in slot.times %}
+                                    <a href="{% url 'appointments:book_appointment' doctor.id %}?date={{ slot.date|date:'Y-m-d' }}&time={{ time|time:'H:i' }}" class="time-slot">
+                                        {{ time|time:"g:i A" }}
+                                    </a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        
+                        <a href="{% url 'appointments:book_appointment' doctor.id %}" class="book-btn">
+                            📅 Book Appointment
+                        </a>
+                    {% else %}
+                        <div class="no-availability">
+                            <h3>No Available Slots</h3>
+                            <p>This doctor has no available appointment slots in the next 7 days.</p>
+                            <p>Please check back later or contact the doctor directly.</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Reviews Section -->
+            {% if reviews %}
+            <div class="reviews-section">
+                <div class="section-title">💬 Recent Reviews</div>
+                {% for review in reviews %}
+                <div class="review-item">
+                    <div class="review-header">
+                        <span class="reviewer-name">{{ review.patient.get_full_name }}</span>
+                        <span class="review-date">{{ review.created_at|date:"M d, Y" }}</span>
+                    </div>
+                    <div class="review-rating">
+                        {% for i in "12345" %}
+                            {% if forloop.counter <= review.rating %}
+                                ⭐
+                            {% else %}
+                                ☆
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="review-text">{{ review.comment }}</div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

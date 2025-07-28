@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feature Coming Soon - Hospital Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .coming-soon-container {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            animation: fadeIn 0.8s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+            color: #667eea;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 2.2em;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .feature-name {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            margin: 20px 0;
+            display: inline-block;
+            font-size: 1.1em;
+        }
+        
+        .description {
+            color: #777;
+            margin: 25px 0;
+            line-height: 1.8;
+            font-size: 1em;
+        }
+        
+        .progress-container {
+            background: #f0f0f0;
+            border-radius: 25px;
+            height: 8px;
+            margin: 30px 0;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            height: 100%;
+            border-radius: 25px;
+            animation: progress 2s ease-in-out;
+        }
+        
+        @keyframes progress {
+            from { width: 0%; }
+            to { width: var(--progress, 65%); }
+        }
+        
+        .progress-text {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+        
+        .action-buttons {
+            margin-top: 35px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+        
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+        }
+        
+        .eta {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 15px 20px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .eta-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .eta-text {
+            color: #666;
+            font-size: 0.95em;
+        }
+        
+        .features-list {
+            text-align: left;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+        }
+        
+        .features-list h4 {
+            color: #333;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .features-list ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .features-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e9ecef;
+            color: #666;
+        }
+        
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .features-list li:before {
+            content: "🚀";
+            margin-right: 10px;
+        }
+        
+        @media (max-width: 600px) {
+            .coming-soon-container {
+                padding: 30px 20px;
+                margin: 20px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 200px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="coming-soon-container">
+        <div class="icon">🚧</div>
+        
+        <h1>Feature Coming Soon!</h1>
+        
+        <div class="subtitle">
+            We're working hard to bring you amazing new functionality
+        </div>
+        
+        {% if feature_name %}
+            <div class="feature-name">{{ feature_name }}</div>
+        {% endif %}
+        
+        <div class="description">
+            {% if description %}
+                {{ description }}
+            {% else %}
+                This feature is currently under development. Our team is working diligently to implement this functionality and ensure it meets our high standards for quality and user experience.
+            {% endif %}
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar" style="--progress: {% if progress %}{{ progress }}%{% else %}65%{% endif %}"></div>
+        </div>
+        <div class="progress-text">Development Progress: {% if progress %}{{ progress }}%{% else %}65%{% endif %} Complete</div>
+        
+        <div class="eta">
+            <div class="eta-title">⏰ Estimated Timeline</div>
+            <div class="eta-text">
+                {% if eta %}
+                    {{ eta }}
+                {% else %}
+                    Expected completion: Next 2-3 weeks
+                {% endif %}
+            </div>
+        </div>
+        
+        {% if upcoming_features %}
+            <div class="features-list">
+                <h4>🎯 What's Coming</h4>
+                <ul>
+                    {% for feature in upcoming_features %}
+                        <li>{{ feature }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+        
+        <div class="action-buttons">
+            <a href="javascript:history.back()" class="btn btn-primary">← Go Back</a>
+            {% if dashboard_url %}
+                <a href="{{ dashboard_url }}" class="btn btn-secondary">Dashboard</a>
+            {% else %}
+                <a href="{% url 'admin_dashboard' %}" class="btn btn-secondary">Dashboard</a>
+            {% endif %}
+        </div>
+        
+        <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e9ecef; color: #999; font-size: 0.9em;">
+            <p>💡 <strong>Suggestion?</strong> Contact the development team with your feature requests!</p>
+        </div>
+    </div>
+</body>
+</html>
