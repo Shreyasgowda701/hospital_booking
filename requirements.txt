@@ -3,3 +3,4 @@ Django==5.2.4
 sqlparse==0.5.3
 wheel==0.45.1
 whitenoise
+gunicorn
