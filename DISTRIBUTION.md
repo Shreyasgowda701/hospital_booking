@@ -49,9 +49,9 @@ python manage.py runserver
 
 | Role | Username | Password | Dashboard Color |
 |------|----------|----------|----------------|
-| Admin | admin | admin123 | Red Theme |
-| Doctor | doctor1 | doctor123 | Blue Theme |
-| Patient | patient1 | patient123 | Green Theme |
+| Admin | shreyasadmin | admin@123 | Red Theme |
+| Doctor | shreyasdoctor | admin@123 | Blue Theme |
+| Patient | shreyaspatient | admin@123 | Green Theme |
 
 ## 📋 **System Requirements**
 - Python 3.8+ 
